@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1ihktoee0arg"]
+
+[ext_resource type="Script" uid="uid://dgyouwmbqeko2" path="res://scenes/world/hud.gd" id="1_8y1ok"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8y1ok"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_m0ngv"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_3futf"]
+font_size = 24
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_8y1ok")
+
+[node name="Level_Ind" type="Label" parent="."]
+offset_left = 530.0
+offset_top = 600.0
+offset_right = 647.0
+offset_bottom = 645.0
+text = "LEVEL 1"
+label_settings = SubResource("LabelSettings_8y1ok")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = 1030.0
+offset_top = 600.0
+offset_right = 1070.0
+offset_bottom = 645.0
+text = "0"
+label_settings = SubResource("LabelSettings_m0ngv")
+horizontal_alignment = 2
+
+[node name="Health" type="Label" parent="."]
+offset_left = 113.0
+offset_top = 611.0
+offset_right = 212.0
+offset_bottom = 645.0
+text = "HEALTH: 3"
+label_settings = SubResource("LabelSettings_3futf")

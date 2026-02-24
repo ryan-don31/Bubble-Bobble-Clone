@@ -1,0 +1,32 @@
+# Godot-specific
+.import/
+export.cfg
+export_presets.cfg
+
+# User-specific settings
+*.mono/
+*.scons
+*.godot#*
+
+# Temporary editor files
+*.tmp
+*.swp
+*.swap
+*.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Builds / export folders
+/bin/
+/build/
+*.exe
+*.apk
+*.pck
+*.zip
+
+# Mono / C# builds (if using Godot C#)
+*.dll
+*.pdb
+*.mdb

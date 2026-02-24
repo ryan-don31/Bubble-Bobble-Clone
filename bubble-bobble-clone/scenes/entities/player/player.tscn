@@ -1,0 +1,123 @@
+[gd_scene load_steps=18 format=3 uid="uid://bcgf6jx12a6am"]
+
+[ext_resource type="Texture2D" uid="uid://dbn1lmx8vt81l" path="res://assets/sprites/player/still.png" id="1_1hmtu"]
+[ext_resource type="Script" uid="uid://dvihdr5amdd5t" path="res://scenes/entities/player/player.gd" id="1_635qg"]
+[ext_resource type="Texture2D" uid="uid://bt1vsyfi4r7tr" path="res://assets/sprites/player/jump0.png" id="3_r4dfn"]
+[ext_resource type="Texture2D" uid="uid://dwqvunuaueyjy" path="res://assets/sprites/player/jump1.png" id="4_70kwc"]
+[ext_resource type="Texture2D" uid="uid://fgnnwrq00eh5" path="res://assets/sprites/player/run00.png" id="5_yywfu"]
+[ext_resource type="Texture2D" uid="uid://dbu3prdo56xgm" path="res://assets/sprites/player/run01.png" id="6_pcd0u"]
+[ext_resource type="Texture2D" uid="uid://b32ca6sgwkxkg" path="res://assets/sprites/player/run02.png" id="7_w3p2j"]
+[ext_resource type="Texture2D" uid="uid://cam411djban3h" path="res://assets/sprites/player/run03.png" id="8_knby6"]
+[ext_resource type="Texture2D" uid="uid://d3j4arb6hjrkp" path="res://assets/sprites/player/run10.png" id="9_18p7g"]
+[ext_resource type="Texture2D" uid="uid://2p4iggajfbiy" path="res://assets/sprites/player/run11.png" id="10_fg2wu"]
+[ext_resource type="Texture2D" uid="uid://pncj5af3lnm" path="res://assets/sprites/player/run12.png" id="11_7dqom"]
+[ext_resource type="Texture2D" uid="uid://b6t4ccrup4uck" path="res://assets/sprites/player/run13.png" id="12_go8vc"]
+[ext_resource type="Texture2D" uid="uid://barbwyina786a" path="res://assets/sprites/player/blow0.png" id="13_wghkl"]
+[ext_resource type="Texture2D" uid="uid://dni0svqp8onj7" path="res://assets/sprites/player/blow1.png" id="14_yk2xr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vs62q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_wghkl")
+}],
+"loop": true,
+"name": &"fire_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_yk2xr")
+}],
+"loop": true,
+"name": &"fire_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1hmtu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r4dfn")
+}],
+"loop": true,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_70kwc")
+}],
+"loop": true,
+"name": &"jump_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yywfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pcd0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w3p2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_knby6")
+}],
+"loop": true,
+"name": &"run_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_18p7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fg2wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7dqom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_go8vc")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_635qg"]
+size = Vector2(62, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4dfn"]
+size = Vector2(62, 68)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_635qg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vs62q")
+animation = &"fire_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_635qg")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_r4dfn")
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

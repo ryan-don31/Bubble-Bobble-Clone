@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://5ot2whhdxtln"]
+
+[ext_resource type="PackedScene" uid="uid://bcgf6jx12a6am" path="res://scenes/entities/player/player.tscn" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://yppoiakubdb7" path="res://scenes/world/level_01.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://ct6rb7g53fcjt" path="res://scenes/entities/projectiles/bubble.tscn" id="2_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://cwjmsos1g745a" path="res://scenes/entities/enemies/enemy.tscn" id="4_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://c1ihktoee0arg" path="res://scenes/world/HUD.tscn" id="5_6q06x"]
+[ext_resource type="PackedScene" uid="uid://bd1oih1k6pwon" path="res://scenes/world/enemy_spawner.tscn" id="6_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://bgbl4p1j0maxb" path="res://assets/sprites/bg/bg0.png" id="7_hujxm"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_hyk8p")]
+position = Vector2(577, 193)
+speed = 400.0
+jump_velocity = -600.0
+bubble_scene = ExtResource("2_k2fmo")
+
+[node name="Level01" parent="." instance=ExtResource("2_iuonh")]
+
+[node name="HUD" parent="." instance=ExtResource("5_6q06x")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("6_ow5a4")]
+position = Vector2(301, -61)
+enemy_scene = ExtResource("4_l3cfh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.47801313, 0.47801313, 0.47801313, 0.6039216)
+z_index = -1
+offset_right = 1150.0
+offset_bottom = 650.0
+texture = ExtResource("7_hujxm")

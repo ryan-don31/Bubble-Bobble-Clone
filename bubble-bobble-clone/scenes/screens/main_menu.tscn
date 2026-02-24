@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0us7ml3mxjwk"]
+
+[ext_resource type="Script" uid="uid://c02chm7j8eeyt" path="res://scenes/screens/main_menu.gd" id="1_4iv2k"]
+[ext_resource type="Texture2D" uid="uid://c5ws2qcu0blqh" path="res://assets/sprites/ui/title.png" id="1_dxijm"]
+[ext_resource type="Texture2D" uid="uid://c3hpgqflryr3x" path="res://assets/sprites/ui/space0.png" id="2_wnyi3"]
+[ext_resource type="Texture2D" uid="uid://d08kklp7klo2f" path="res://assets/sprites/ui/space1.png" id="3_4iv2k"]
+[ext_resource type="Texture2D" uid="uid://wccdktovmmjw" path="res://assets/sprites/ui/space2.png" id="4_kdsux"]
+[ext_resource type="Texture2D" uid="uid://ct1c0g6qjwn8e" path="res://assets/sprites/ui/space3.png" id="5_500hm"]
+[ext_resource type="Texture2D" uid="uid://cg1yt1ncifaec" path="res://assets/sprites/ui/space4.png" id="6_6wrxy"]
+[ext_resource type="Texture2D" uid="uid://u11nt7imlsyg" path="res://assets/sprites/ui/space5.png" id="7_vwswc"]
+[ext_resource type="Texture2D" uid="uid://d1xq2qybwqnv4" path="res://assets/sprites/ui/space6.png" id="8_tjd55"]
+[ext_resource type="Texture2D" uid="uid://dioxnmx14f0sb" path="res://assets/sprites/ui/space7.png" id="9_gkvlu"]
+[ext_resource type="Texture2D" uid="uid://c750crepitgrr" path="res://assets/sprites/ui/space8.png" id="10_e6kon"]
+[ext_resource type="Texture2D" uid="uid://dw1nfl5bvgkhy" path="res://assets/sprites/ui/space9.png" id="11_udlf7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xeyog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wnyi3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4iv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kdsux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_500hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6wrxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vwswc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tjd55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gkvlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_e6kon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_udlf7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_4iv2k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1150.0
+offset_bottom = 650.0
+texture = ExtResource("1_dxijm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(584, 467)
+sprite_frames = SubResource("SpriteFrames_xeyog")
+frame_progress = 0.47971767

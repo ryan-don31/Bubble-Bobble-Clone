@@ -1,0 +1,124 @@
+[gd_scene load_steps=24 format=3 uid="uid://ct6rb7g53fcjt"]
+
+[ext_resource type="Script" uid="uid://chdnb1lmdeuu7" path="res://scenes/entities/projectiles/bubble.gd" id="1_ph2b1"]
+[ext_resource type="Texture2D" uid="uid://bihkcy5swfc3w" path="res://assets/sprites/bubble/orb6.png" id="2_cwa2y"]
+[ext_resource type="Texture2D" uid="uid://cawc7lsq4s4su" path="res://assets/sprites/bubble/orb0.png" id="2_t5ddf"]
+[ext_resource type="Texture2D" uid="uid://bpyy2t06qew1n" path="res://assets/sprites/bubble/orb1.png" id="3_vdft1"]
+[ext_resource type="Texture2D" uid="uid://ccixvieowqskb" path="res://assets/sprites/bubble/orb2.png" id="4_y3cdc"]
+[ext_resource type="Texture2D" uid="uid://ddut5tu81u1l2" path="res://assets/sprites/bubble/orb3.png" id="5_mlgmo"]
+[ext_resource type="Texture2D" uid="uid://buy7upvb3utta" path="res://assets/sprites/bubble/orb4.png" id="6_k7e0o"]
+[ext_resource type="Texture2D" uid="uid://b1bxjfq1hu1n5" path="res://assets/sprites/bubble/orb5.png" id="7_x0h1x"]
+[ext_resource type="Texture2D" uid="uid://q23e6dkr0gay" path="res://assets/sprites/bubble/pop10.png" id="9_n27qg"]
+[ext_resource type="Texture2D" uid="uid://d1svca33ljwl2" path="res://assets/sprites/bubble/trap00.png" id="9_ubnu7"]
+[ext_resource type="Texture2D" uid="uid://dvt80lch2gh5k" path="res://assets/sprites/bubble/pop11.png" id="10_mxlba"]
+[ext_resource type="Texture2D" uid="uid://gt8es3sw5a2r" path="res://assets/sprites/bubble/trap01.png" id="10_qyd4v"]
+[ext_resource type="Texture2D" uid="uid://cx8hlndrl1h25" path="res://assets/sprites/bubble/pop12.png" id="11_c6k3t"]
+[ext_resource type="Texture2D" uid="uid://d0pdlwu6bbt8x" path="res://assets/sprites/bubble/trap02.png" id="11_stgeo"]
+[ext_resource type="Texture2D" uid="uid://b63uuj2plhrip" path="res://assets/sprites/bubble/pop13.png" id="12_4k78i"]
+[ext_resource type="Texture2D" uid="uid://bl3yt6sdsxcst" path="res://assets/sprites/bubble/trap03.png" id="12_xkmhf"]
+[ext_resource type="Texture2D" uid="uid://d0l48s8yqcn6l" path="res://assets/sprites/bubble/trap04.png" id="13_7wboj"]
+[ext_resource type="Texture2D" uid="uid://bs470aeljkqai" path="res://assets/sprites/bubble/pop14.png" id="13_q5hu6"]
+[ext_resource type="Texture2D" uid="uid://bes5b444g2ug5" path="res://assets/sprites/bubble/trap05.png" id="14_n27qg"]
+[ext_resource type="Texture2D" uid="uid://caqdoeg5gtwom" path="res://assets/sprites/bubble/trap06.png" id="15_mxlba"]
+[ext_resource type="Texture2D" uid="uid://c6phgeus4i7dj" path="res://assets/sprites/bubble/trap07.png" id="16_c6k3t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6iyoa"]
+radius = 35.014282
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8tm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t5ddf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vdft1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y3cdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mlgmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k7e0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_x0h1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cwa2y")
+}],
+"loop": false,
+"name": &"moving",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_n27qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mxlba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_c6k3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_4k78i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_q5hu6")
+}],
+"loop": false,
+"name": &"popping",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ubnu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qyd4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_stgeo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xkmhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7wboj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_n27qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mxlba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_c6k3t")
+}],
+"loop": true,
+"name": &"trapped",
+"speed": 5.0
+}]
+
+[node name="Bubble" type="Area2D" groups=["bubbles"]]
+collision_mask = 6
+script = ExtResource("1_ph2b1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6iyoa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b8tm4")
+animation = &"popping"
+frame = 4
+frame_progress = 1.0
+
+[node name="DisappearTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]

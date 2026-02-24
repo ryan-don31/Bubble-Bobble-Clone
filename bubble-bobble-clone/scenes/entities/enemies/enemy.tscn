@@ -1,0 +1,128 @@
+[gd_scene load_steps=21 format=3 uid="uid://cwjmsos1g745a"]
+
+[ext_resource type="Script" uid="uid://bcv3ycluiqrgw" path="res://scenes/entities/enemies/enemy.gd" id="1_8tbu6"]
+[ext_resource type="Texture2D" uid="uid://bneq20868sj5t" path="res://assets/sprites/robot/robot000.png" id="2_jokyc"]
+[ext_resource type="Texture2D" uid="uid://v7j7ecdmr07c" path="res://assets/sprites/robot/robot010.png" id="3_k75k7"]
+[ext_resource type="Texture2D" uid="uid://bvlel43j0wkl8" path="res://assets/sprites/robot/robot001.png" id="4_45afl"]
+[ext_resource type="Texture2D" uid="uid://dk2lq4ldqtjir" path="res://assets/sprites/robot/robot002.png" id="5_aaa10"]
+[ext_resource type="Texture2D" uid="uid://c2qyeb8pulafa" path="res://assets/sprites/robot/robot003.png" id="6_whmns"]
+[ext_resource type="Texture2D" uid="uid://1gr88k0w2av3" path="res://assets/sprites/robot/robot004.png" id="7_ae10g"]
+[ext_resource type="Texture2D" uid="uid://cgh36n6gs4t6i" path="res://assets/sprites/robot/robot011.png" id="8_5a40m"]
+[ext_resource type="Texture2D" uid="uid://b4pjfmb1nbbl0" path="res://assets/sprites/robot/robot012.png" id="9_kuyxq"]
+[ext_resource type="Texture2D" uid="uid://b0jn5mkg5a870" path="res://assets/sprites/robot/robot013.png" id="10_ir3tp"]
+[ext_resource type="Texture2D" uid="uid://du1r3tlwjvhi3" path="res://assets/sprites/robot/robot014.png" id="11_redeq"]
+[ext_resource type="Texture2D" uid="uid://droqrtmu341ea" path="res://assets/sprites/robot/robot005.png" id="12_qiqku"]
+[ext_resource type="Texture2D" uid="uid://d4d4dvtvejkh2" path="res://assets/sprites/robot/robot006.png" id="13_loulj"]
+[ext_resource type="Texture2D" uid="uid://cvygepysi1cm1" path="res://assets/sprites/robot/robot007.png" id="14_vbslo"]
+[ext_resource type="Texture2D" uid="uid://dke0agkm768dw" path="res://assets/sprites/robot/robot015.png" id="15_jss6c"]
+[ext_resource type="Texture2D" uid="uid://dwfgdlfxprk3s" path="res://assets/sprites/robot/robot016.png" id="16_l2vtu"]
+[ext_resource type="Texture2D" uid="uid://3fewgognm3c3" path="res://assets/sprites/robot/robot017.png" id="17_5gwie"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_em884"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jokyc")
+}],
+"loop": true,
+"name": &"fall_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k75k7")
+}],
+"loop": true,
+"name": &"fall_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_45afl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_aaa10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_whmns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ae10g")
+}],
+"loop": true,
+"name": &"move_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5a40m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kuyxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ir3tp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_redeq")
+}],
+"loop": true,
+"name": &"move_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_qiqku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_loulj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vbslo")
+}],
+"loop": false,
+"name": &"shoot_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_jss6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l2vtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5gwie")
+}],
+"loop": false,
+"name": &"shoot_right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q408"]
+size = Vector2(49, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tbu6"]
+size = Vector2(49, 72)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 4
+script = ExtResource("1_8tbu6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_em884")
+animation = &"shoot_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 2)
+shape = SubResource("RectangleShape2D_5q408")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1.5, 2)
+shape = SubResource("RectangleShape2D_8tbu6")
